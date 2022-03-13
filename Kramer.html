@@ -1,0 +1,92 @@
+<html>
+<head>
+<div>
+<h1>Решение методом Крамера</h1>
+Вводите только цифровые данные. Например, для строки <code>4x-5y+z</code> необходимо ввести <kbd>4;-5;1</kbd>.
+<form name="Kramer" action="javascript:button1()">
+<table class="table-center"><tr><td>
+<table>
+<tr>
+<td style="text-align:center"><b>Матрица A</b>
+<table>
+<tr><td width="40" align="center"> a11 <input style="width:60px" type="text" name="am11" value="1" size="4"></td><td width="40" align="center"> a12 <input style="width:60px" type="text" name="am12" value="1" size="4"></td><td width="40" align="center"> a13 <input style="width:60px" type="text" name="am13" value="1" size="4"></td></tr><tr><td width="40" align="center"> a21 <input style="width:60px" type="text" name="am21" value="1" size="4"></td><td width="40" align="center"> a22 <input style="width:60px" type="text" name="am22" value="1" size="4"></td><td width="40" align="center"> a23 <input style="width:60px" type="text" name="am23" value="1" size="4"></td></tr><tr><td width="40" align="center"> a31 <input style="width:60px" type="text" name="am31" value="1" size="4"></td><td width="40" align="center"> a32 <input style="width:60px" type="text" name="am32" value="1" size="4"></td><td width="40" align="center"> a33 <input style="width:60px" type="text" name="am33" value="1" size="4"></td></tr></table>
+</td>
+<td style="text-align:center"><b>Результат B</b>
+<table width="60">
+<tr><td width="40" align="center"> b1 <input style="width:60px" type="text" name="bm1" value="1" size="4"></td></tr><tr><td width="40" align="center"> b2 <input style="width:60px" type="text" name="bm2" value="1" size="4"></td></tr><tr><td width="40" align="center"> b3 <input style="width:60px" type="text" name="bm3" value="1" size="4"></td></tr></table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<p><input type="submit" value="посчитать"></p>
+</div>
+</head>
+
+<body>
+<script type='text/javascript'>
+
+ function determinant(a11,a12,a13,a21,a22,a23,a31,a32,a33) 
+    {
+    var d;
+    d = a11*a22*a33+a12*a23*a31+a13*a21*a32;
+    d = d-a13*a22*a31-a12*a21*a33-a11*a23*a32;  
+ 
+    return d
+    }
+ 
+ function button1() 
+    {
+    var d;
+    var d1,d2,d3;
+	
+	/*var a11,a12,a13,b1;
+    var a21,a22,a23,b2;
+    var a31,a32,a33,b3;*/
+	
+    var a11 = document.Kramer.am11.value;
+    var a12 = document.Kramer.am12.value;
+	var a13 = document.Kramer.am13.value;
+	var a21 = document.Kramer.am21.value;
+	var a22 = document.Kramer.am22.value;
+	var a23 = document.Kramer.am23.value;
+	var a31 = document.Kramer.am31.value;
+	var a32 = document.Kramer.am32.value;
+	var a33 = document.Kramer.am33.value;
+	var b1 = document.Kramer.bm1.value;
+	var b2 = document.Kramer.bm2.value;
+	var b3 = document.Kramer.bm3.value;
+  
+    var x1,x2,x3;
+    
+    /*a11 =1;  a12=2;   a13=-4;  b1=3;
+    a21 =2;  a22=-3;  a23=3;   b2=-1;
+    a31=3;   a32=2;   a33=-2;  b3=5;*/
+    
+    d = determinant(a11,a12,a13,a21,a22,a23,a31,a32,a33);
+    document.write('d=' + d + '<br>');
+ 
+    d1 = determinant(b1,a12,a13,b2,a22,a23,b3,a32,a33);
+    document.write('d1=' + d1 + '<br>');
+ 
+    d2 = determinant(a11,b1,a13,a21,b2,a23,a31,b3,a33);
+    document.write('d2=' + d2 + '<br>');
+ 
+    d3 = determinant(a11,a12,b1,a21,a22,b2,a31,a32,b3);
+    document.write('d3=' + d3 + '<br>');
+    
+    x1 = d1/d;
+    document.write('x1=' + x1 + '<br>');
+    
+    x2 = d2/d;
+    document.write('x2=' + x2 + '<br>');
+ 
+    x3 = d3/d;
+    document.write('x3=' + x3 + '<br>');
+        }
+ 
+    button1();
+</script>
+</body>
+</html>
